@@ -91,6 +91,23 @@
       animation: pop 0.6s ease forwards;
     }
 
+    .shy-text {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 13px;
+        color: #ff1e38;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+    .shy-text.show {
+        opacity: 1;
+    }
+
+
     @keyframes pop {
       0% {
         transform: scale(0.8);
@@ -134,12 +151,16 @@
       <button id="noBtn">No</button>
     </div>
     <div class="success-text" id="successText">
-      🎉 Yay! Congratulations! 🎉<br><br>
+      😍 Yay! Congratulations! 😍<br><br>
       You booked your <strong>Happiness</strong>,<br>
       <strong>Food party</strong>,<br>
       <strong>World Tour</strong><br>
       for a <strong>Lifetime!</strong> 💖🌍🍕
     </div>
+    <div class="shy-text" id="shyText">
+        'No' seems a little shy 🙈
+    </div>
+
   </div>
 
   <script>
@@ -148,6 +169,8 @@
     const yesBtn = document.getElementById('yesBtn');
     const successText = document.getElementById('successText');
     const question = document.getElementById('question');
+    let nobtnCount = 0;
+    const shyText = document.getElementById('shyText');
 
     const moveNoButton = () => {
       const containerWidth = buttons.offsetWidth;
@@ -158,6 +181,10 @@
 
       noBtn.style.left = randomX + 'px';
       noBtn.style.top = randomY + 'px';
+      nobtnCount++;
+      if (nobtnCount > 3) {
+            shyText.classList.add('show');
+        }
     };
 
     noBtn.addEventListener('mouseover', moveNoButton);   // desktop
