@@ -149,7 +149,7 @@
     const successText = document.getElementById('successText');
     const question = document.getElementById('question');
 
-    noBtn.addEventListener('mouseover', () => {
+    const moveNoButton = () => {
       const containerWidth = buttons.offsetWidth;
       const containerHeight = buttons.offsetHeight;
 
@@ -158,7 +158,10 @@
 
       noBtn.style.left = randomX + 'px';
       noBtn.style.top = randomY + 'px';
-    });
+    };
+
+    noBtn.addEventListener('mouseover', moveNoButton);   // desktop
+    noBtn.addEventListener('pointerdown', moveNoButton);  // mobile
 
     yesBtn.addEventListener('click', () => {
         // Lock card size
