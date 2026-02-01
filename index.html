@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine Proposal</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 40px 50px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      position: relative;
+    }
+
+    .card h1 {
+      color: #ff4b5c;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 80px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      position: absolute;
+    }
+
+    #yesBtn {
+      background: #ff4b5c;
+      color: white;
+      left: 36%;
+      transform: translateX(-50%);
+    }
+
+    #yesBtn:hover {
+      background: #ff1e38;
+      transform: translateX(-50%) scale(1.1);
+    }
+
+    #noBtn {
+      background: #ddd;
+      color: #333;
+      left: 53%;
+    }
+
+    .hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      color: rgba(255,255,255,0.6);
+      font-size: 20px;
+      animation: float 6s infinite ease-in;
+    }
+
+    .success-text {
+      display: none;
+      color: #ff4b5c;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.5;
+      animation: pop 0.6s ease forwards;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.8);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hearts">
+    <div class="heart" style="left:10%; animation-delay:0s;">❤️</div>
+    <div class="heart" style="left:30%; animation-delay:1s;">💗</div>
+    <div class="heart" style="left:50%; animation-delay:2s;">💕</div>
+    <div class="heart" style="left:70%; animation-delay:3s;">❤️</div>
+    <div class="heart" style="left:90%; animation-delay:4s;">💖</div>
+  </div>
+
+  <div class="card">
+    <h1 id="question">Komal Will you be my Valentine? 💘</h1>
+    <div class="buttons">
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
+    <div class="success-text" id="successText">
+      🎉 Yay! Congratulations! 🎉<br><br>
+      You booked your <strong>Happiness</strong>,<br>
+      <strong>Food party</strong>,<br>
+      <strong>World Tour</strong><br>
+      for a <strong>Lifetime!</strong> 💖🌍🍕
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const buttons = document.querySelector('.buttons');
+    const yesBtn = document.getElementById('yesBtn');
+    const successText = document.getElementById('successText');
+    const question = document.getElementById('question');
+
+    noBtn.addEventListener('mouseover', () => {
+      const containerWidth = buttons.offsetWidth;
+      const containerHeight = buttons.offsetHeight;
+
+      const randomX = Math.random() * (containerWidth - noBtn.offsetWidth);
+      const randomY = Math.random() * (containerHeight - noBtn.offsetHeight);
+
+      noBtn.style.left = randomX + 'px';
+      noBtn.style.top = randomY + 'px';
+    });
+
+    yesBtn.addEventListener('click', () => {
+        // Lock card size
+        const card = document.querySelector('.card');
+        const cardWidth = card.offsetWidth;
+        const cardHeight = card.offsetHeight;
+
+        card.style.width = cardWidth + 'px';
+        card.style.height = cardHeight + 'px';
+
+        // Swap content
+        buttons.style.display = 'none';
+        question.style.display = 'none';
+        successText.style.display = 'inline';
+    });
+
+  </script>
+
+</body>
+</html>
